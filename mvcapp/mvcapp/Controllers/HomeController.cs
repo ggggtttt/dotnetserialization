@@ -3,8 +3,8 @@ using System.IO;
 using System.Web.Mvc;
 using System.Xml;
 using System.Xml.Serialization;
-using mvcapp.Models;
-using Newtonsoft.Json;
+using mvcapp.ExampleClasses;
+using mvcapp.UseCases;
 
 namespace mvcapp.Controllers
 {
@@ -19,26 +19,18 @@ namespace mvcapp.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            var simple = new Simple
-            {
-                ID = 1,
-                Value = "Some test string."
-            };
+            //UseCaseOne.Run();
+            //UseCaseTwo.Run();
+            //UseCaseThree.Run();
+            //UseCaseFour.Run();
+            //UseCaseFive.Run();
+            UseCaseSix.Run();
 
-            var simple2 = new Simple
-            {
-                ID = 2,
-                Value = "Some test string 2."
-            };
 
             //var complex = new ComplexConstructor("powershell.exe")
             //{
             //    ID = 3,
             //};
-
-            simple.Value = simple2;
-
-            var serializedSimple = JsonConvert.SerializeObject(simple, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All});
 
             //var serializedComplex = JsonConvert.SerializeObject(complex, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
 
@@ -62,39 +54,6 @@ namespace mvcapp.Controllers
             string payloadWithObjectDataProviderPayload ="{\"$type\":\"mvcapp.Models.Simple, mvcapp\",\"ID\":1,\"Value\":"+ objectDataProviderPayload +"}";
 
 
-            var deserializeSimpleObject = JsonConvert.DeserializeObject(serializedSimple);
-
-            var deserializeSimpleObjectWithTypeNameHandlingAll = JsonConvert.DeserializeObject(serializedSimple, new
-                JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All
-                });
-
-            var deserializePayloadWithObjectDataProviderPayload = JsonConvert.DeserializeObject(payloadWithObjectDataProviderPayload, new
-                JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All
-                });
-
-            var deserializeComplexConstructorObjectWithTypeNameHandlingAll = JsonConvert.DeserializeObject(payloadWithComplexConstructor, new
-                JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All
-                });
-
-            var deserializeComplexSetterObjectWithTypeNameHandlingAll = JsonConvert.DeserializeObject(payloadWithComplexSetter, new
-                JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All
-                });
-
-            var deserializeSimple = JsonConvert.DeserializeObject<Simple>(serializedSimple);
-
-            var deserializeSimpleWithTypeNameHandlingAll = JsonConvert.DeserializeObject<Simple>(serializedSimple, new
-                JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All
-                });
 
             return View();
         }

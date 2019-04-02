@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace mvcapp.Models
+namespace mvcapp.ExampleClasses
 {
     public class ComplexSetter
     {
@@ -18,3 +18,4 @@ namespace mvcapp.Models
         }
     }
 }
+
