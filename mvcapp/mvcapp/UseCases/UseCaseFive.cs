@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace mvcapp.UseCases
 {
-    public class UseCaseFive
+    public class UseCaseFive : ISerializable
     {
         public static void Run()
         {
@@ -16,6 +17,11 @@ namespace mvcapp.UseCases
                 });
 
             deserializedTypedObject.ToString();
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

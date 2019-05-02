@@ -18,7 +18,6 @@ namespace mvcapp.UseCases
 
             var deserializedSimple = 
                 JsonConvert.DeserializeObject(serializedSimple);
-
         }
     }
 }

@@ -34,6 +34,9 @@ namespace mvcapp.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            //UseCaseEight.Run();
+            UseCaseNine.Run();
+
             var simple = new Simple
             {
                 ID = 1,

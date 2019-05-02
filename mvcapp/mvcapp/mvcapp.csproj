@@ -133,7 +133,10 @@
     <Compile Include="ExampleClasses\ComplexConstructor.cs" />
     <Compile Include="ExampleClasses\ComplexSetter.cs" />
     <Compile Include="ExampleClasses\Simple.cs" />
+    <Compile Include="Helpers\XmlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UseCases\UseCaseNine.cs" />
+    <Compile Include="UseCases\UseCaseEight.cs" />
     <Compile Include="UseCases\UseCaseSeven.cs" />
     <Compile Include="UseCases\UseCaseSix.cs" />
     <Compile Include="UseCases\UseCaseFive.cs" />
